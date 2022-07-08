@@ -13,6 +13,7 @@ class KafkaAllowEveryoneIfNoAclFoundCheck(BaseK8Check):
         - If you specify this option based on the assumption that you have ACLs, but then your last ACL is deleted, you essentially open up your Kafka clusters to all users.
         - If you’re using this option to disable ACLs, exercise caution: if someone adds an ACL, all the users who previously had access will lose that access.
         https://docs.confluent.io/platform/current/kafka/authorization.html
+        https://kafka.apache.org/documentation/#security_authz
 
         """
         name = "Ensure that allowEveryoneIfNoAclFoundCheck is set to false or unused"
