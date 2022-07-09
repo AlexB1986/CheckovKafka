@@ -10,6 +10,7 @@ class KafkaCheckAuthorizer(BaseK8Check):
         Kafka ships with a pluggable Authorizer and an out-of-box authorizer implementation that uses zookeeper to store all the ACLs. 
         The Authorizer is configured by setting authorizer.class.name. To enable the out of the box implementation you should specify it,
         e.g. authorizer.class.name=kafka.security.authorizer.AclAuthorizer
+        https://kafka.apache.org/documentation/#security_authz
 
         """
         name = "Ensure that pluggable authorizer (ACL) or an out-of-box authorizer implementation is used"
