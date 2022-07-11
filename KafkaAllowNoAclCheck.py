@@ -26,10 +26,15 @@ class KafkaAllowEveryoneIfNoAclFoundCheck(BaseK8Check):
         try:
             for container in conf["spec"]["template"]["spec"]["containers"]:
                 for env in container["env"]:
-                    if env["name"] == "KAFKA_CFG_ALLOW_EVERYONE_IF_NO_ACL_FOUND" and env["value"] == "true":
-                        return CheckResult.FAILED
+                    if env["name"] == "KAFKA_CFG_ALLOW_EVERYONE_IF_NO_ACL_FOUND":
+                        if env["value"] == None:
+                            return CheckResult.FAILED
+                        elif env["value"].lower() == "false":
+                            return CheckResult.PASSED
+                        else:
+                            return CheckResult.FAILED
         except KeyError:
-            return CheckResult.PASSED
-        return CheckResult.PASSED
+            return CheckResult.UNKNOWN
+        return CheckResult.UNKNOWN
 
 check = KafkaAllowEveryoneIfNoAclFoundCheck()
