@@ -21,9 +21,11 @@ class KafkaPlaintextListenerCheck(BaseK8Check):
             for container in conf["spec"]["template"]["spec"]["containers"]:
                 for env in container["env"]:
                     if env["name"] == "ALLOW_PLAINTEXT_LISTENER":
-                        if env["value"].lower() == "no":
+                        if env["value"] == None:
+                            return CheckResult.FAILED
+                        elif env["value"].lower() == "no":
                             return CheckResult.PASSED
-                        if env["value"].lower() == "yes":
+                        else:
                             return CheckResult.FAILED
         except KeyError:
             return CheckResult.UNKNOWN
