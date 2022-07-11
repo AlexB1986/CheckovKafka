@@ -23,10 +23,14 @@ class KafkaCheckAuthorizer(BaseK8Check):
         try:
             for container in conf["spec"]["template"]["spec"]["containers"]:
                 for env in container["env"]:
-                    if env["name"] == "KAFKA_CFG_AUTHORIZER_CLASS_NAME" and env["value"] == "":
-                        return CheckResult.FAILED
+                    if env["name"] == "KAFKA_CFG_AUTHORIZER_CLASS_NAME":
+                        if  env["value"] == "" or env["value"] == None:
+                            return CheckResult.FAILED
+                        else:
+                            print(env["value"])
+                            return CheckResult.PASSED
         except KeyError:
-            return CheckResult.PASSED
-        return CheckResult.PASSED
+            return CheckResult.UNKNOWN
+        return CheckResult.UNKNOWN
 
 check = KafkaCheckAuthorizer()
