@@ -10,7 +10,7 @@ class KafkaPlaintextListenerCheck(BaseK8Check):
         ALLOW_PLAINTEXT_LISTENER is used to allow to use the PLAINTEXT listener.
 
         """
-        name = "Ensure that ALLOW_PLAINTEXT_LISTENER is set to NO"
+        name = "Ensure that allowPlaintextListener is set to false"
         id = "CKV_KAFKA_3"
         supported_kind = ['StatefulSet']
         categories = [CheckCategories.KUBERNETES]
