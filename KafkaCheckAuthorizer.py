@@ -27,7 +27,6 @@ class KafkaCheckAuthorizer(BaseK8Check):
                         if  env["value"] == "" or env["value"] == None:
                             return CheckResult.FAILED
                         else:
-                            print(env["value"])
                             return CheckResult.PASSED
         except KeyError:
             return CheckResult.UNKNOWN
