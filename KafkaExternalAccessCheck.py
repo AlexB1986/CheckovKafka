@@ -8,6 +8,11 @@ class KafkaExternalAccessCheck(BaseK8Check):
     def __init__(self):
         """
         Param externalAccess.enabled enables Kubernetes external cluster access to Kafka brokers
+        In this policy we check svc-external-access.yaml. We may also additionally check followings parameters in statefulset.yaml
+        KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP
+            value: "INTERNAL:PLAINTEXT,CLIENT:PLAINTEXT,EXTERNAL:PLAINTEXT"
+        KAFKA_CFG_LISTENERS
+            value: "INTERNAL://:9093,CLIENT://:9092,EXTERNAL://:9094"
         """
         name = "Ensure that externalAccess.enabled for Kafka is set to false or external access is implemented based on the principle of least privilege"
         id = "CKV_KAFKA_4"
