@@ -114,5 +114,3 @@ namespace "kafka-system" deleted
 | CKV_KAFKA_2 | resource |StatefulSet| Ensure that pluggable authorizer (ACL) or an out-of-box authorizer implementation is used |Kafka ships with a pluggable Authorizer and an out-of-box authorizer implementation that uses zookeeper to store all the ACLs. The Authorizer is configured by setting [authorizer.class.name](https://kafka.apache.org/documentation/#security_authz). To enable the out of the box implementation you should specify it, e.g. `authorizer.class.name=kafka.security.authorizer.AclAuthorizer`|Kubernetes|
 | CKV_KAFKA_3 | resource |StatefulSet| Ensure that `allowPlaintextListener` is set to false | This settings allows to use the plaintext listeners|Kubernetes|
 | CKV_KAFKA_4 | resource |Service| Ensure that `externalAccess.enabled` for Kafka is set to false or external access is implemented based on the principle of least privilege| This parameter enables Kubernetes external cluster access to Kafka brokers|Kubernetes|
-
-
